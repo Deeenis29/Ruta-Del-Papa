@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: 249 250 251;
+    --color-surface: 255 255 255;
+    --color-foreground: 31 41 55;
+    --color-muted: 107 114 128;
+    --color-border: 229 231 235;
+
+    --color-primary: 197 34 31;
+    --color-primary-50: 254 242 242;
+    --color-primary-100: 254 226 226;
+    --color-primary-500: 239 68 68;
+    --color-primary-600: 220 38 38;
+    --color-primary-700: 185 28 28;
+    --color-primary-900: 127 29 29;
+
+    --color-secondary: 217 119 6;
+    --color-secondary-50: 255 251 235;
+    --color-secondary-100: 254 243 199;
+    --color-secondary-500: 245 158 11;
+    --color-secondary-600: 217 119 6;
+    --color-secondary-700: 180 83 9;
+    --color-secondary-900: 120 53 15;
+  }
+
+  .dark {
+    --color-background: 17 24 39;
+    --color-surface: 31 41 55;
+    --color-foreground: 243 244 246;
+    --color-muted: 156 163 175;
+    --color-border: 55 65 81;
+
+    --color-primary: 239 68 68;
+    --color-primary-50: 69 10 10;
+    --color-primary-100: 127 29 29;
+    --color-primary-500: 239 68 68;
+    --color-primary-600: 248 113 113;
+    --color-primary-700: 252 165 165;
+    --color-primary-900: 254 202 202;
+
+    --color-secondary: 245 158 11;
+    --color-secondary-50: 69 26 3;
+    --color-secondary-100: 120 53 15;
+    --color-secondary-500: 245 158 11;
+    --color-secondary-600: 251 191 36;
+    --color-secondary-700: 253 224 71;
+    --color-secondary-900: 254 240 138;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply tracking-tight;
+  }
+
+  /* Focus visible */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  /* High text scale */
+  .a11y-large-text {
+    font-size: 1.15rem;
+  }
+  .a11y-large-text h1 { font-size: 3.5rem; }
+  .a11y-large-text h2 { font-size: 2.5rem; }
+  .a11y-large-text h3 { font-size: 1.9rem; }
+
+  /* High contrast */
+  .a11y-high-contrast {
+    --color-muted: 55 65 81;
+    --color-border: 31 41 55;
+  }
+  .dark .a11y-high-contrast {
+    --color-muted: 209 213 219;
+    --color-border: 229 231 235;
+  }
+
+  .a11y-reduce-motion * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-8xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-base font-semibold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-primary-700 active:scale-[0.98] shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply btn bg-secondary text-white hover:bg-secondary-700 active:scale-[0.98] shadow-sm;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-border bg-surface text-foreground hover:border-primary hover:text-primary;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
+
+  .card {
+    @apply bg-surface border border-border rounded-2xl overflow-hidden transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:shadow-xl hover:-translate-y-1 hover:border-primary/30;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-muted mt-4 max-w-2xl;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-secondary;
+  }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgb(var(--color-border)); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-muted)); }
